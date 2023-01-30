@@ -1,5 +1,9 @@
 .App {
   text-align: center;
+  display: flex;
+}
+.products {
+  margin: 4em;
 }
 
 .App-logo {
