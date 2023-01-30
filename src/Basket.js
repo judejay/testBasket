@@ -6,10 +6,14 @@ function Basket() {
     //let price;
     const { basketItems } = useContext(BasketContext);
     let sum = 0;
-    let itemA = [];
-    const totalSum = (basketItems, sum) => {
+    const totalSum = (basketItems) => {
         return basketItems
-            .map((item) => item.price)
+            .map((item) => {
+                console.log(item);
+                //do logic here
+
+                return parseInt(item.price) * parseInt(item.quantity);
+            })
             .reduce((prev, current) => {
                 return (sum = parseInt(prev) + parseInt(current));
             }, 0);
