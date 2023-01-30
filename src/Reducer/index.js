@@ -6,10 +6,8 @@ const BasketReducer = (state, action) => {
             const { basketItems } = state;
             const { currentItem } = action;
             let updatebasketItems = [...basketItems];
-            //console.log(updatebasketItems, state);
 
             const indexOfCurrentItem = updatebasketItems.findIndex((item) => item.item === currentItem.item);
-            //console.log(indexOfCurrentItem);
             if (indexOfCurrentItem === -1) {
                 updatebasketItems.push({
                     ...currentItem,
@@ -17,19 +15,10 @@ const BasketReducer = (state, action) => {
                 });
             } else {
                 const itemAlreadyExits = updatebasketItems.find((item) => item.item === updatebasketItems[indexOfCurrentItem].item);
-                console.log('increase quantity', itemAlreadyExits);
                 updatebasketItems[indexOfCurrentItem] = {
                     ...currentItem,
                     quantity: itemAlreadyExits.quantity + 1
                 };
-                // console.log('quantity updated ', updatebasketItems);
-                // // set flag for discount in quantity more than specail rate at
-                // const discountedItem = updatebasketItems[indexOfCurrentItem].quantity >= parseInt(updatebasketItems[indexOfCurrentItem].discountFor);
-                // // console.log(discountedItem);
-                // updatebasketItems[indexOfCurrentItem] = {
-                //     ...itemAlreadyExits,
-                //     discountedItem: discountedItem
-                // };
             }
 
             return {

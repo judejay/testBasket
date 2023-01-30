@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { BasketContext } from './Context';
-import { items } from './items';
 
 function Basket() {
     //let price;
@@ -9,23 +8,20 @@ function Basket() {
     const totalSum = (basketItems) => {
         return basketItems
             .map((item) => {
-                console.log(item);
-                //do logic here
                 let remainingSameprice = 0;
-                if (parseInt(item.quantity) >= parseInt(item.discountFor)) {
-                    const multiBuys = Math.floor(parseInt(item.quantity) / parseInt(item.discountFor));
-                    if (parseInt(item.quantity) % parseInt(item.discountFor)) {
-                        remainingSameprice = parseInt(item.quantity) - multiBuys * parseInt(item.discountFor);
+                if (item.quantity >= item.discountFor) {
+                    const multiBuys = Math.floor(item.quantity / item.discountFor);
+                    if (item.quantity % item.discountFor) {
+                        remainingSameprice = item.quantity - multiBuys * item.discountFor;
                     }
 
-                    console.log('multiBuys', multiBuys);
-                    return multiBuys * parseInt(item.specialPrice) + remainingSameprice * parseInt(item.price);
+                    return multiBuys * item.specialPrice + remainingSameprice * item.price;
                 } else {
-                    return parseInt(item.price) * parseInt(item.quantity);
+                    return item.price * item.quantity;
                 }
             })
             .reduce((prev, current) => {
-                return (sum = parseInt(prev) + parseInt(current));
+                return (sum = prev + current);
             }, 0);
     };
 

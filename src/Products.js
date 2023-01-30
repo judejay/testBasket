@@ -9,8 +9,8 @@ function Products({ item }) {
         <div className="item">
             <div>Item: {item.item} </div>
             <div>Price: {item.price}</div>
-            <div>Discount for: {item.discountFor} </div>
-            <div>SpecialPrice: {item.specialPrice}</div>
+            {item.discountFor && <div>Discount for: {item.discountFor} </div>}
+            {item.specialPrice && <div>SpecialPrice: {item.specialPrice}</div>}
             <button onClick={() => addToBasket(item)}>Add to basket</button>
         </div>
     );
