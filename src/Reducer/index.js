@@ -17,7 +17,7 @@ const BasketReducer = (state, action) => {
                 });
             } else {
                 const itemAlreadyExits = updatebasketItems.find((item) => item.item === updatebasketItems[indexOfCurrentItem].item);
-                console.log('increase quanity', itemAlreadyExits);
+                console.log('increase quantity', itemAlreadyExits);
                 updatebasketItems[indexOfCurrentItem] = {
                     ...currentItem,
                     quantity: itemAlreadyExits.quantity + 1

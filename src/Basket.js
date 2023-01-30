@@ -11,8 +11,18 @@ function Basket() {
             .map((item) => {
                 console.log(item);
                 //do logic here
+                let remainingSameprice = 0;
+                if (parseInt(item.quantity) >= parseInt(item.discountFor)) {
+                    const multiBuys = Math.floor(parseInt(item.quantity) / parseInt(item.discountFor));
+                    if (parseInt(item.quantity) % parseInt(item.discountFor)) {
+                        remainingSameprice = parseInt(item.quantity) - multiBuys * parseInt(item.discountFor);
+                    }
 
-                return parseInt(item.price) * parseInt(item.quantity);
+                    console.log('multiBuys', multiBuys);
+                    return multiBuys * parseInt(item.specialPrice) + remainingSameprice * parseInt(item.price);
+                } else {
+                    return parseInt(item.price) * parseInt(item.quantity);
+                }
             })
             .reduce((prev, current) => {
                 return (sum = parseInt(prev) + parseInt(current));
